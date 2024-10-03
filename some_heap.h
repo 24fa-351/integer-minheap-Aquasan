@@ -2,13 +2,15 @@
 #ifndef HEAP_H
 #define HEAP_H
 
+#include <stdio.h>
+
 // a min heap
 
 typedef unsigned long long heap_key_t;
 typedef void* heap_value_t;
 #define HEAP_KEY_FORMAT "%llu"
 
-typedef struct {
+typedef union heap_val {
     heap_key_t key;
     heap_value_t value;
 } heap_node_t;
@@ -27,8 +29,7 @@ unsigned int heap_size(heap_t *heap);
 
 void heap_insert(heap_t *heap, heap_key_t key, heap_value_t data);
 
-heap_value_t heap_remove_min(heap_t *heap);
+heap_key_t heap_remove_min(heap_t *heap);
 
-void heap_print(heap_t *heap);
-
+void heap_print(heap_t *heap, FILE *file);
 #endif
